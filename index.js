@@ -4,7 +4,7 @@ import getTopNews from "./get-data-news.js";
 import getGovData from "./get-data-gov.js";
 
 const fetchingStuff = (() => {
-  function _setName() {
+  const _setName = () => {
     const fetchedDiv = document.getElementById("fetchedData");
 
     const insertLoader = () => {
