@@ -3,18 +3,18 @@ import './style.css';
 import getTopNews from "./get-data-news.js";
 import getGovData from "./get-data-gov.js";
 
-var fetchingStuff = (function() {
+const fetchingStuff = (() => {
   function _setName() {
     const fetchedDiv = document.getElementById("fetchedData");
 
-    var insertLoader = () => {
+    const insertLoader = () => {
       fetchedDiv.insertAdjacentHTML(
         "afterbegin",
         `<div class="lds-dual-ring"></div>`
       );
       fetchedDiv.classList.add("loading-opacity");
     };
-    var removeLoader = () => {
+    const removeLoader = () => {
       fetchedDiv.getElementsByClassName("lds-dual-ring")[0].remove();
       fetchedDiv.classList.remove("loading-opacity");
     };
@@ -22,7 +22,7 @@ var fetchingStuff = (function() {
     new getGovData().getStories().then(ids => {
       //console.log(ids.data[0]);
       const fetchedDiv = document.getElementById("fetchedData");
-      ids.data.map(function(i) {
+      ids.data.map((i) => {
 
         fetchedDiv.insertAdjacentHTML(
           "beforeend",
@@ -47,17 +47,17 @@ var fetchingStuff = (function() {
         `<button id="getnews">Fetch news articles</button>`
       );
       const cta = document.getElementById("getnews");
-      cta.addEventListener("click", function() {
+      cta.addEventListener("click", () => {
         insertLoader();
         hackerNews();
         cta.remove();
       });
     });
 
-    var hackerNews = () => {
+    const hackerNews = () => {
       new getTopNews().getStories().then(data => {
         const fetchedDiv = document.getElementById("fetchedData");
-        data.map(function(yoObj) {
+        data.map((yoObj) => {
           fetchedDiv.insertAdjacentHTML(
             "afterbegin",
             `<div class="article">
